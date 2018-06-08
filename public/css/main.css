@@ -1,0 +1,55 @@
+body {
+    background-color: #1c1d1d;
+    width: 100%;
+    height: auto;
+    bottom: 0px;
+    top: 0px;
+    left: 0;
+    position: absolute;
+}
+
+.container {
+    position: absolute;
+    width: auto;
+    height: 50px;
+    top: 50%;
+    left: 50%;
+    margin-top: -170px;
+    margin-left: -170px;
+}
+.button-poles {
+    display: block;
+    margin: 10px auto;
+    height: 100px;
+    width: 100px;
+    border-radius: 50%;
+    border: 2px solid #019bf5;
+    text-align: center;
+    transition: all 0.05s;
+    background-color: transparent;
+    vertical-align: middle;
+}
+
+
+.button-sides {
+    display: inline-block;
+    margin: 5px;
+    height: 100px;
+    width: 100px;
+    border-radius: 50%;
+    border: 2px solid #019bf5;
+    text-align: center;
+    transition: all 0.05s;
+    background-color: transparent;
+    vertical-align: middle;
+}
+
+.button-slides img {
+    width: 5px;
+    height:5px;
+}
+
+.click {
+    transform: scale(1.1);
+    border: 2px solid #01f55f;
+}
