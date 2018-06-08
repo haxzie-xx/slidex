@@ -17,6 +17,9 @@ body {
     margin-top: -170px;
     margin-left: -170px;
 }
+
+button:focus {outline:0;}
+
 .button-poles {
     display: block;
     margin: 10px auto;
@@ -28,6 +31,11 @@ body {
     transition: all 0.05s;
     background-color: transparent;
     vertical-align: middle;
+}
+
+.button-poles:active {
+    transform: scale(0.9);
+    border: 2px solid #01f55f;
 }
 
 
@@ -42,6 +50,11 @@ body {
     transition: all 0.05s;
     background-color: transparent;
     vertical-align: middle;
+}
+
+.button-sides:active {
+    transform: scale(0.9);
+    border: 2px solid #01f55f;
 }
 
 .button-slides img {
