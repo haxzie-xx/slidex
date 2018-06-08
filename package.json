@@ -1,6 +1,6 @@
 {
   "name": "slidex",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Express app to control slides over wifi from a remote device.",
   "main": "index.js",
   "bin": {
@@ -13,7 +13,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/haxzie/slide-express.git"
+    "url": "git+https://github.com/haxzie/slidex.git"
   },
   "keywords": [
     "slide",
@@ -26,9 +26,9 @@
   "author": "haxzie",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/haxzie/slide-express/issues"
+    "url": "https://github.com/haxzie/slidex/issues"
   },
-  "homepage": "https://github.com/haxzie/slide-express#readme",
+  "homepage": "https://github.com/haxzie/slidex#readme",
   "dependencies": {
     "express": "^4.16.3",
     "ip": "^1.1.5",

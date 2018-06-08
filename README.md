@@ -16,7 +16,7 @@ $ slidex
 
 - Clone the repository
 ```
-$ git clone https://github.com/haxzie/slide-express.git
+$ git clone https://github.com/haxzie/slidex.git
 ```
 - cd into the repository and install dependencies
 ```
@@ -31,7 +31,7 @@ $ npm start
 ## Setting up for development
 - Clone the repository
 ```
-$ git clone https://github.com/haxzie/slide-express.git
+$ git clone https://github.com/haxzie/slidex.git
 ```
 - cd into the repository and install dependencies
 ```
@@ -48,7 +48,7 @@ Pull requests are welcomed, Please address your PR for any of the issue labled a
 ### Instructions
 - Fork the repository to your account.
 - Copy the clone url of your repository.
-- Clone the repository to your machine `git clone https://github.com/YOUR_USER_NAME/slide-express.git`
+- Clone the repository to your machine `git clone https://github.com/YOUR_USER_NAME/slidex.git`
 - Make sure you create a branch with the name as the issue you are working on `git checkout -b YOUR_BRANCH_NAME`, and make sure you are working on the same branch and not the `master`, run `git status` to know which branch you are working on, run `git branch`, your branch will be highlighted with an `*`. If you are not in your branch or want to move to another branch use `git checkout BRANCH_NAME`. 
 a good branch name should explain what this branch is about or what you are working on eg. `improved_connection`, `css_animations` etc.
 - Add the upstream url of original repository, follow the instructions [here](https://help.github.com/articles/configuring-a-remote-for-a-fork/)
@@ -61,4 +61,4 @@ For more info on the dependencies used, visit their official pages linked below
 - [robotjs](https://github.com/octalmage/robotjs)
 - [ip](https://github.com/indutny/node-ip)
 - [qrcode-terminal](https://github.com/gtanner/qrcode-terminal)
-- [socket.io](https://soket.io) _soon_
+- [socket.io](https://soket.io)
