@@ -2,7 +2,17 @@
 Express app to control slides over wifi from a remote device. 
 
 ## Installation
-_coming soon to NPM_
+Install globally using npm
+```
+$ npm install -g slidex
+```
+
+### usage
+```
+$ slidex
+```
+
+### OR
 
 - Clone the repository
 ```
