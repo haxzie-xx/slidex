@@ -1,8 +1,11 @@
 {
-  "name": "express-slides",
-  "version": "1.0.0",
+  "name": "slidex",
+  "version": "1.0.1",
   "description": "Express app to control slides over wifi from a remote device.",
   "main": "index.js",
+  "bin": {
+    "slidex": "index.js"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon index.js",
