@@ -3,8 +3,13 @@ const robot = require('robotjs');
 const ip = require('ip');
 const qrcode = require('qrcode-terminal');
 
-const app = express();
+const app = express(); //initialize an express server
+const server = require('http').Server(app);// init an http server for socket.io
+const io = require('socket.io')(server);
 const port = 8080;
+
+//only these keys will be activated by robot
+const keys = ['left', 'right', 'up', 'down', 'space'];
 
 //to serve static files for client
 app.use(express.static('public'));
@@ -14,20 +19,24 @@ app.get('/', (req, res) => {
         res.sendFile('public/index.html', {root: __dirname});
 });
 
-//get the request from the client, with key name
-app.get('/key', (req, res) => {
-    //check whether the key name is set
-    if (!req.query.id) {
-        //if not send 202
-        res.status(202).send('NO INPUT');
-    }else {
-        //if set, make robotjs to keytap that key
-        robot.keyTap(req.query.id);
-        res.status(200).send('SUCCESS');
-    }
+//on new connection to socket.io
+io.on('connection', function(socket) {
+    socket.emit('status', 200); //send initial status code
+    //get button click event and fire robot keyTap
+    socket.on('key', async function(data) {
+        console.log(data);
+        if (data && keys.includes(data)){
+            try{
+                await robot.keyTap(data);
+            }catch(error) {
+                console.log(error);
+            };
+            
+        }
+    });
 });
 
-app.listen(8080, function (err) {
+server.listen(8080, function (err) {
     if (!err) {
         //if no error display the local ip
         console.log("\n\nLocal: http://127.0.0.1:"+port);
