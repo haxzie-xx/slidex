@@ -1,3 +1,5 @@
+#! /usr/bin/env node
+
 const express = require('express');
 const robot = require('robotjs');
 const ip = require('ip');
