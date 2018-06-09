@@ -41,7 +41,7 @@ io.on('connection', function(socket) {
 const schema = {
   properties: {
     portNumber: {
-      description: 'Type a port pumber - Press Enter to start with -> ',
+      description: 'Type a port number - Press Enter to start with -> ',
       default: '8080',
       conform: function (value) {
         if (/^[0-9]+$/.test(value)) {
