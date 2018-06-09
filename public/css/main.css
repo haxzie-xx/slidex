@@ -20,9 +20,7 @@ body {
 
 button:focus {outline:0;}
 
-.button-poles {
-    display: block;
-    margin: 10px auto;
+.btn {
     height: 100px;
     width: 100px;
     border-radius: 50%;
@@ -33,36 +31,45 @@ button:focus {outline:0;}
     vertical-align: middle;
 }
 
-.button-poles:active {
+.btn:active {
     transform: scale(0.9);
     border: 2px solid #01f55f;
 }
 
+.btn img {
+    width: 50px;
+    height: 50px;
+}
+
+.button-poles {
+    display: block;
+    margin: 10px auto;
+}
 
 .button-sides {
     display: inline-block;
     margin: 5px;
-    height: 100px;
-    width: 100px;
-    border-radius: 50%;
-    border: 2px solid #019bf5;
-    text-align: center;
-    transition: all 0.05s;
-    background-color: transparent;
-    vertical-align: middle;
 }
 
-.button-sides:active {
-    transform: scale(0.9);
-    border: 2px solid #01f55f;
+/* Smartphones (portrait and landscape) ----------- */
+@media only screen and (max-width : 400px) and (orientation: portrait),
+(max-width : 600px) and (orientation: landscape){
+
+    .container {
+        margin-top: -125px;
+        margin-left: -125px;
+    }
+    
+    .btn {
+        height: 70px;
+        width: 70px;
+    }
+    .btn img {
+        width: 30px;
+        height: 30px;
+    }
+
 }
 
-.button-slides img {
-    width: 5px;
-    height:5px;
-}
 
-.click {
-    transform: scale(1.1);
-    border: 2px solid #01f55f;
-}
+
