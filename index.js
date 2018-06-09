@@ -1,7 +1,7 @@
 #! /usr/bin/env node
 
 const express = require('express');
-const robot = require('robotjs');
+const keySender = require('node-key-sender');
 const ip = require('ip');
 const qrcode = require('qrcode-terminal');
 const prompt = require('prompt');
@@ -10,7 +10,7 @@ const app = express(); //initialize an express server
 const server = require('http').Server(app); // init an http server for socket.io
 const io = require('socket.io')(server);
 
-//only these keys will be activated by robot
+//only these keys will be activated by node-key-sender
 const keys = ['left', 'right', 'up', 'down', 'space'];
 
 //to serve static files for client
@@ -31,7 +31,7 @@ io.on('connection', function (socket) {
         console.log(data);
         if (data && keys.includes(data)) {
             try {
-                await robot.keyTap(data);
+                await keySender.sendKey(data);
             } catch (error) {
                 console.log(error);
             };
