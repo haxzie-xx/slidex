@@ -1,0 +1,13 @@
+{
+  "name": "Slidex",
+  "short_name": "Slidex",
+  "lang": "en-US",
+  "start_url": "/",
+  "display": "standalone",
+  "icons": [
+    {
+      "src": "https://cdn.dribbble.com/users/281716/screenshots/2631405/s-logo.png",
+      "sizes": "192x192"
+    }
+  ]
+}
