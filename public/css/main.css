@@ -52,8 +52,8 @@ button:focus {outline:0;}
 }
 
 /* Smartphones (portrait and landscape) ----------- */
-@media only screen and (max-width : 400px) and (orientation: portrait),
-(max-width : 600px) and (orientation: landscape){
+@media only screen and (max-width : 360px) and (orientation: portrait),
+(max-width : 800px) and (orientation: landscape){
 
     .container {
         margin-top: -125px;
