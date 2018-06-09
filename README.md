@@ -58,7 +58,7 @@ a good branch name should explain what this branch is about or what you are work
 # Dependencies
 For more info on the dependencies used, visit their official pages linked below
 - [Express](https://github.com/expressjs/express)
-- [robotjs](https://github.com/octalmage/robotjs)
+- [node-key-sender](https://github.com/garimpeiro-it/node-key-sender)
 - [ip](https://github.com/indutny/node-ip)
 - [qrcode-terminal](https://github.com/gtanner/qrcode-terminal)
 - [socket.io](https://soket.io)
