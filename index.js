@@ -8,7 +8,8 @@ const qrcode = require('qrcode-terminal');
 const app = express(); //initialize an express server
 const server = require('http').Server(app);// init an http server for socket.io
 const io = require('socket.io')(server);
-const port = 8080;
+let port = 8080;
+const prompt = require('prompt');
 
 //only these keys will be activated by robot
 const keys = ['left', 'right', 'up', 'down', 'space'];
@@ -37,18 +38,43 @@ io.on('connection', function(socket) {
         }
     });
 });
-
-server.listen(8080, function (err) {
-    if (!err) {
-        //if no error display the local ip
-        console.log("\n\nLocal: http://127.0.0.1:"+port);
-        //get the network ip and display it
-        let network_address = "http://"+ip.address()+":"+port;
-        console.log("Network: "+network_address+"\n\n");
-        //generate and display the qr code for network ip on terminal
-        qrcode.generate(network_address);
-    }else {
-        console.log("Unable to run the server. is your port 8080 already used?");
-        this.close();
+const schema = {
+  properties: {
+    portNumber: {
+      description: 'Type a port pumber - Press Enter to start with -> ',
+      default: '8080',
+      conform: function (value) {
+        if (/^[0-9]+$/.test(value)) {
+          if (value >= 1024 && value <= 65535)
+            return true;
+          else{
+            schema.properties.portNumber.message = 'Port Number should be within (1024 - 65535) Due to root privilege requirement '
+            return false;
+          }
+        }
+        else{
+          schema.properties.portNumber.message = 'Port number should be only numbers'
+          return false;
+        }
+      }
     }
-})
+  }
+};
+prompt.start();
+prompt.get(schema, function (err, result) {
+  port = result ? result.portNumber : 8080
+  server.listen(port, function (err) {
+    if (!err) {
+      //if no error display the local ip
+      console.log("\n\nLocal: http://127.0.0.1:"+port);
+      //get the network ip and display it
+      let network_address = "http://"+ip.address()+":"+port;
+      console.log("Network: "+network_address+"\n\n");
+      //generate and display the qr code for network ip on terminal
+      qrcode.generate(network_address);
+    }else {
+      console.log("Unable to run the server. is your port 8080 already used?");
+      this.close();
+    }
+  })
+});
