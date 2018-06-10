@@ -1,0 +1,17 @@
+{
+  "name": "Slidex",
+  "short_name": "Slidex",
+  "lang": "en-US",
+  "start_url": "/",
+  "display": "standalone",
+  "icons": [
+    {
+      "src": "images/launcher_icon_192.png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "images/launcher_icon_512.png",
+      "sizes": "512x512"
+    }
+  ]
+}
