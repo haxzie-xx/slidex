@@ -6,8 +6,12 @@
   "display": "standalone",
   "icons": [
     {
-      "src": "https://cdn.dribbble.com/users/281716/screenshots/2631405/s-logo.png",
+      "src": "images/launcher_icon_192.png",
       "sizes": "192x192"
+    },
+    {
+      "src": "images/launcher_icon_512.png",
+      "sizes": "512x512"
     }
   ]
 }
