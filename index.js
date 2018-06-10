@@ -68,7 +68,7 @@ const schema = {
 prompt.start();
 prompt.get(schema, function (err, result) {
     //use default port, if input is invalid
-    const port = result ? result.portNumber : 8080
+    const port = result ? result.portNumber : 8080;
     server.listen(port, function (err) {
         if (!err) {
             //if no error display the local ip
@@ -79,7 +79,7 @@ prompt.get(schema, function (err, result) {
             //generate and display the qr code for network ip on terminal
             qrcode.generate(network_address);
         } else {
-            console.log("Unable to run the server, is your port"+ port +" already used?");
+            console.log("Unable to run the server, is your port:"+ port +" already used?");
             this.close();
         }
     })
