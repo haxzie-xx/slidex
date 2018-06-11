@@ -5,6 +5,7 @@ const keySender = require('node-key-sender');
 const ip = require('ip');
 const qrcode = require('qrcode-terminal');
 const prompt = require('prompt');
+const path = require('path');
 
 const app = express(); //initialize an express server
 const server = require('http').Server(app); // init an http server for socket.io
@@ -14,7 +15,7 @@ const io = require('socket.io')(server);
 const keys = ['left', 'right', 'up', 'down', 'space'];
 
 //to serve static files for client
-app.use(express.static('public'));
+app.use(express.static(path.join(__dirname, 'public')));
 
 //serve the html page with buttons
 app.get('/', (req, res) => {
