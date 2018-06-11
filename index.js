@@ -6,6 +6,8 @@ const ip = require('ip');
 const qrcode = require('qrcode-terminal');
 const prompt = require('prompt');
 const path = require('path');
+const exec = require('child_process').exec;
+
 
 const app = express(); //initialize an express server
 const server = require('http').Server(app); // init an http server for socket.io
@@ -23,6 +25,26 @@ app.get('/', (req, res) => {
         root: __dirname
     });
 });
+
+//Monkey patching the node-key-sender library to fix jar path issues
+keySender.execute = function(arrParams) {
+    return new Promise(function(resolve, reject) {
+        //path where the jar file resides
+        const jarPath = path.join(__dirname,'node_modules', 'node-key-sender', 'jar', 'key-sender.jar');
+        //generate command to execute the jar file
+        //original command with path in quotes replace with path without enclosed in quotes
+        const command = 'java -jar ' + jarPath + ' ' + arrParams.join(' ') + keySender.getCommandLineOptions();
+
+        return exec(command, {}, function(error, stdout, stderr) {
+            if (error == null) {
+                resolve(stdout, stderr);
+            } else {
+                reject(error, stdout, stderr);
+            }
+        });
+    });
+}
+
 
 //on new connection to socket.io
 io.on('connection', function (socket) {
@@ -70,7 +92,7 @@ prompt.start();
 prompt.get(schema, function (err, result) {
     //use default port, if input is invalid
     const port = result ? result.portNumber : 8080;
-    server.listen(port, function (err) {
+    server.listen(port, '0.0.0.0', function (err) {
         if (!err) {
             //if no error display the local ip
             console.log("\n\nLocal: http://127.0.0.1:" + port);
