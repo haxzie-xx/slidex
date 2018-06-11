@@ -1,5 +1,14 @@
 #! /usr/bin/env node
 
+//print the version of the application if command line arguments are passed
+if (process.argv[2] && (process.argv[2].toLowerCase() === '-v' || process.argv[2] === '--version')) {
+    console.log('Slidex v 1.0.7');
+    process.exit(0);
+} else if (process.argv[2]) {
+    console.log('(✖_✖) Nothing I can do about that.');
+    process.exit(0);
+}
+
 const express = require('express');
 const keySender = require('node-key-sender');
 const ip = require('ip');
@@ -90,6 +99,10 @@ const schema = {
 //prompt for port to run the server
 prompt.start();
 prompt.get(schema, function (err, result) {
+    //if result is undefined, ie. user tried to key combo to exit or some BS. exit the app
+    if(!result) {
+        process.exit(0);
+    }
     //use default port, if input is invalid
     const port = result ? result.portNumber : 8080;
     server.listen(port, '0.0.0.0', function (err) {
