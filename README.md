@@ -10,7 +10,11 @@ $ npm install -g slidex
 ### usage
 ```
 $ slidex
+prompt: Type a port number - Press Enter to start with -> :  (8080)
 ```
+_By default the app will take 8080 as the port. You can choose any port between 1024 - 65535._  
+
+Visit the URL printed on the terminal or use the QR code to access the WebApp. Add the webApp to home screen from your browser to use it as a PWA. *Note a PWA generated in a network will be functional only for that network. If you change the network or the IP of the host gets changed, you might need to redo the above steps.
 
 ### OR
 
