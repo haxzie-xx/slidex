@@ -1,6 +1,6 @@
 {
   "name": "slidex",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "Express app to control slides over wifi from a remote device.",
   "main": "index.js",
   "bin": {

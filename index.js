@@ -1,9 +1,10 @@
 #! /usr/bin/env node
 
 let port = 8080;
+const package = require('./package.json');
 //print the version of the application if command line arguments are passed
 if (process.argv[2] && (process.argv[2].toLowerCase() === '-v' || process.argv[2] === '--version')) {
-    console.log('Slidex v 1.0.7');
+    console.log('Slidex v '+package.version);
     process.exit(0);
 } else if (process.argv[2] && (/^\d+$/.test(process.argv[2]))){
     //check if the user has passed any port address
