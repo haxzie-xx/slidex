@@ -1,9 +1,19 @@
 #! /usr/bin/env node
 
+let port = 8080;
 //print the version of the application if command line arguments are passed
 if (process.argv[2] && (process.argv[2].toLowerCase() === '-v' || process.argv[2] === '--version')) {
     console.log('Slidex v 1.0.7');
     process.exit(0);
+} else if (process.argv[2] && (/^\d+$/.test(process.argv[2]))){
+    //check if the user has passed any port address
+    let userPort =  parseInt(process.argv[2]);
+    if (userPort > 1024 && userPort <65535) {
+        port = userPort;
+    } else {
+        console.log('Port number should be between 1024 and 65535');
+        process.exit(0);
+    }
 } else if (process.argv[2]) {
     console.log('(✖_✖) Nothing I can do about that.');
     process.exit(0);
@@ -13,10 +23,10 @@ const express = require('express');
 const keySender = require('node-key-sender');
 const ip = require('ip');
 const qrcode = require('qrcode-terminal');
-const prompt = require('prompt');
 const path = require('path');
 const exec = require('child_process').exec;
-
+const portfinder = require('portfinder');
+const Net = require('net');
 
 const app = express(); //initialize an express server
 const server = require('http').Server(app); // init an http server for socket.io
@@ -72,39 +82,14 @@ io.on('connection', function (socket) {
     });
 });
 
-//init schema for user input
-const schema = {
-    properties: {
-        portNumber: {
-            description: 'Type a port number - Press Enter to start with -> ',
-            default: '8080',
-            conform: function (value) {
-                if (/^[0-9]+$/.test(value)) {
-                    //check whether the requested port is in protected range.
-                    if (value >= 1024 && value <= 65535)
-                        return true;
-                    else {
-                        schema.properties.portNumber.message = 'Port Number should be within (1024 - 65535) Due to root privilege requirement '
-                        return false;
-                    }
-                } else {
-                    schema.properties.portNumber.message = 'Port number should be only numbers'
-                    return false;
-                }
-            }
-        }
-    }
-};
+const isPortTaken = (port) => new Promise((resolve, reject) => {
+    const tester = Net.createServer()
+         .once('error', err => (err.code == 'EADDRINUSE' ? resolve(false) : reject(err)))
+         .once('listening', () => tester.once('close', () => resolve(true)).close())
+         .listen(port)
+});
 
-//prompt for port to run the server
-prompt.start();
-prompt.get(schema, function (err, result) {
-    //if result is undefined, ie. user tried to key combo to exit or some BS. exit the app
-    if(!result) {
-        process.exit(0);
-    }
-    //use default port, if input is invalid
-    const port = result ? result.portNumber : 8080;
+const runServer = (port) => {
     server.listen(port, '0.0.0.0', function (err) {
         if (!err) {
             //if no error display the local ip
@@ -118,5 +103,26 @@ prompt.get(schema, function (err, result) {
             console.log("Unable to run the server, is your port:"+ port +" already used?");
             this.close();
         }
-    })
-});
+    });
+}
+
+isPortTaken(port).then((isAvailable) => {
+
+    if (isAvailable) {
+        runServer(port);
+    } else {
+        //get an unused open port in the system
+        console.log('Port '+port+' is already in use, Fetching new port...');
+        portfinder.getPortPromise()
+        .then((port) => {
+            runServer(port);
+        })
+        .catch((err) => {
+            console.log("Unable to start the server : "+err);
+        })
+    }
+}).catch((err) => {
+    console.log(err);
+})
+
+

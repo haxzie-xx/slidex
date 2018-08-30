@@ -1,6 +1,6 @@
 {
   "name": "slidex",
-  "version": "1.0.7",
+  "version": "2.0.0",
   "description": "Express app to control slides over wifi from a remote device.",
   "main": "index.js",
   "bin": {
@@ -33,6 +33,7 @@
     "express": "^4.16.3",
     "ip": "^1.1.5",
     "node-key-sender": "^1.0.10",
+    "portfinder": "^1.0.17",
     "prompt": "^1.0.0",
     "qrcode-terminal": "^0.12.0",
     "socket.io": "^2.1.1"
