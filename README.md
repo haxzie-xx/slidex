@@ -24,7 +24,7 @@ $ git clone https://github.com/haxzie/slidex.git
 ```
 - cd into the repository and install dependencies
 ```
-$ cd slide-express
+$ cd slidex
 $ npm install
 ```
 - run the server
